@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - FitPickd</title>
+    <meta name="description" content="View product details at FitPickd - Premium men's clothing">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'beige': '#F5F5DC',
+                        'dark-beige': '#E8E4C9',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="font-inter bg-beige text-black">
+    <!-- Hero Navigation Bar -->
+    <nav class="bg-black text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center h-16">
+                    <img src="../images/FitPickd Logo.png" alt="FitPickd Logo" class="h-full w-auto mr-3 object-contain" style="max-height: 64px;">
+                    <a href="index.html" class="text-2xl font-bold text-white hover:text-gray-300 transition-colors" style="color: #E6D0AC;">
+                        FitPickd
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="shirts.html" class="text-white hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                            Shirts and Polos
+                        </a>
+                        <a href="trousers.html" class="text-white hover:text-gray-300 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                            Trousers
+                        </a>
+                    </div>
+                </div>
+
+                <!-- User Menu -->
+                <div class="flex items-center space-x-4" id="user-menu">
+                    <!-- This will be populated by JavaScript -->
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-gray-300 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black">
+                    <a href="shirts.html" class="text-white hover:text-gray-300 block px-3 py-2 rounded-md text-base font-medium">
+                        Shirts and Polos
+                    </a>
+                    <a href="trousers.html" class="text-white hover:text-gray-300 block px-3 py-2 rounded-md text-base font-medium">
+                        Trousers
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Detail Section -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <div class="mb-8">
+                <nav class="flex" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                        <li class="inline-flex items-center">
+                            <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                                <a href="shop.html" class="text-gray-600 hover:text-black transition-colors">
+                                    Shop
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                                <span class="text-black" id="product-category">Product</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <!-- Product Content -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Image Gallery -->
+                <div class="space-y-4">
+                    <div class="relative">
+                        <!-- Main Image -->
+                        <div class="aspect-square bg-white rounded-lg overflow-hidden">
+                            <img id="main-image" src="" alt="" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <!-- Navigation Arrows -->
+                        <button id="prev-btn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button id="next-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <!-- Image Counter -->
+                        <div class="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-sm">
+                            <span id="image-counter">1</span> / <span id="total-images">1</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Thumbnail Images -->
+                    <div id="thumbnail-container" class="grid grid-cols-4 gap-2">
+                        <!-- Thumbnails will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Product Information -->
+                <div class="space-y-6">
+                    <!-- Product Title and Category -->
+                    <div>
+                        <span id="product-category-badge" class="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium mb-2">
+                            Category
+                        </span>
+                        <h1 id="product-title" class="text-3xl md:text-4xl font-bold text-black mb-2">
+                            Product Title
+                        </h1>
+                        <p id="product-sku" class="text-gray-500 text-sm">SKU: <span id="sku-value">FP-001</span></p>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="flex items-center space-x-4">
+                        <span id="product-price" class="text-3xl font-bold text-black">₹0</span>
+                        <span class="bg-red-500 text-white px-2 py-1 rounded text-sm font-medium">SALE</span>
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-black mb-2">Description</h3>
+                        <p id="product-description" class="text-gray-700 leading-relaxed">
+                            Product description will be loaded here.
+                        </p>
+                    </div>
+
+                    <!-- Size Selection -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-black mb-3">Select Size</h3>
+                        <div id="size-options" class="grid grid-cols-4 gap-2">
+                            <!-- Size options will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Product Specifications -->
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-lg font-semibold text-black mb-4">Product Specifications</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <span class="font-medium text-gray-700">Material:</span>
+                                <span id="product-material" class="text-gray-600">Cotton</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-700">Fit:</span>
+                                <span id="product-fit" class="text-gray-600">Regular</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-700">Care:</span>
+                                <span id="product-care" class="text-gray-600">Machine wash cold</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-700">Origin:</span>
+                                <span id="product-origin" class="text-gray-600">India</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="space-y-4">
+                        <button id="order-btn" 
+                                class="w-full bg-black text-white py-4 px-6 rounded-md font-medium hover:bg-gray-800 transition-colors text-lg">
+                            DM to Order
+                        </button>
+                        <div class="flex space-x-4">
+                            <button id="wishlist-btn" onclick="handleProductWishlistClick()" class="flex-1 border-2 border-black text-black py-3 px-4 rounded-md font-medium hover:bg-black hover:text-white transition-colors">
+                                <i class="fas fa-heart mr-2"></i>Wishlist
+                            </button>
+                            <button class="flex-1 border-2 border-black text-black py-3 px-4 rounded-md font-medium hover:bg-black hover:text-white transition-colors">
+                                <i class="fas fa-share mr-2"></i>Share
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Additional Info -->
+                    <div class="border-t pt-6">
+                        <div class="flex items-center space-x-4 text-sm text-gray-600">
+                            <div class="flex items-center">
+                                <i class="fas fa-truck mr-2"></i>
+                                <span>Free shipping on orders above ₹2000</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-undo mr-2"></i>
+                                <span>Easy returns</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-black mb-8">You might also like</h2>
+            <div id="related-products" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Related products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-4">FitPickd</h3>
+                    <p class="text-gray-300 mb-4">For the Fit You Own</p>
+                    <p class="text-gray-300">Premium men's clothing from Guwahati</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About</a></li>
+                        <li><a href="shop.html" class="text-gray-300 hover:text-white transition-colors">Shop</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <div class="flex items-center">
+                            <i class="fab fa-instagram mr-2"></i>
+                            <a href="https://www.instagram.com/fitpickd" target="_blank" class="hover:text-white transition-colors">@fitpickd</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <a href="mailto:fitpickd@gmail.com" class="hover:text-white transition-colors">fitpickd@gmail.com</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Guwahati 📍</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/product.js"></script>
+</body>
+</html> 
